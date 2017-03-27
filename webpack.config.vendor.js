@@ -1,8 +1,8 @@
 var IsDevBuild = process.argv.indexOf("--env.prod") < 0;
 var Path = require("path");
 var Webpack = require("webpack");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var Merge = require("webpack-merge");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var ExtractCss = new ExtractTextPlugin("vendor.css");
 
 (function(webpack1) {
