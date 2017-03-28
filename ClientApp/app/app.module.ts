@@ -19,6 +19,7 @@ import { Http, RequestOptions } from "@angular/http";
 import { AuthHttp, AuthConfig } from "angular2-jwt";
 import { Auth } from "./auth/services/";
 import { Alert } from "./services/";
+import { appConfigOpaqueToken, appConfig } from "./app.config";
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -62,6 +63,7 @@ import { Alert } from "./services/";
             },
             deps: [Http, RequestOptions, LocalStorageService]
         },
+        { provide: appConfigOpaqueToken, useValue: appConfig },
         Alert,
         Auth,
         AuthGuard,
