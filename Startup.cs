@@ -1,3 +1,4 @@
+using ASPNetCoreAngular2Payments;
 using ASPNetCoreAngular2YoExample.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -51,6 +52,11 @@ namespace ASPNetCoreAngular2YoExample
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+			services.AddScoped<AngularAntiForgeryTokenAttribute>();
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-XSRF-TOKEN";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

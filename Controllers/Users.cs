@@ -51,6 +51,7 @@ namespace ASPNetCoreAngular2YoExample.Controllers
         // POST api/values
         [HttpPost]
         [AllowAnonymous]
+		[ValidateAntiForgeryToken]
         public async Task<ActionResult> Post([FromBody]UserViewModel model)
         {
             if (ModelState.IsValid)
