@@ -9,3 +9,4 @@ script:
  - node node_modules/webpack/bin/webpack.js --env.prod
  - dotnet restore
  - dotnet build
+ - npm test
