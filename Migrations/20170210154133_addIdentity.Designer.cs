@@ -7,7 +7,7 @@ using ASPNetCoreAngular2YoExample.Models;
 
 namespace ASPNetCoreAngular2YoExample.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20170210154133_addIdentity")]
     partial class addIdentity
     {

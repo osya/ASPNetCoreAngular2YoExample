@@ -1,72 +1,59 @@
 ﻿using System;
+using System.IO;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using ASPNetCoreAngular2YoExample.Models;
 using ASPNetCoreAngular2YoExample.SimpleTokenProvider;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ASPNetCoreAngular2YoExample
 {
     public partial class Startup
     {
+        private IApplicationBuilder _app;
+
         private void ConfigureAuth(IApplicationBuilder app)
         {
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Configuration["SecretKey"]));
-
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                // The signing key must match!
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = signingKey,
-
-                // Validate the JWT Issuer (iss) claim
-                ValidateIssuer = true,
-                ValidIssuer = "ExampleIssuer",
-
-                // Validate the JWT Audience (aud) claim
-                ValidateAudience = true,
-                ValidAudience = "http://localhost:41224/",
-
-                // Validate the token expiry
-                ValidateLifetime = true,
-                
-                // If you want to allow a certain amount of clock drift, set that here:
-                ClockSkew = TimeSpan.Zero,
-            };
-
-            app.UseJwtBearerAuthentication(new JwtBearerOptions
-            {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                TokenValidationParameters = tokenValidationParameters
-            });
-
-            var userManager = app.ApplicationServices.GetService<UserManager<IdentityUser>>();
-
+            _app = app;
+           
             app.UseSimpleTokenProvider(new TokenProviderOptions
             {
                 Path = "/api/jwt",
-                Audience = "http://localhost:41224/",
-                Issuer = "ExampleIssuer",
-                SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
-                IdentityResolver = (username, password) => GetIdentity(userManager, username, password)
-        });
+                Audience = Configuration["AppConfiguration:SiteUrl"],
+                Issuer = Configuration["AppConfiguration:SiteUrl"],
+                SigningCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["SecretKey"])), 
+                    SecurityAlgorithms.HmacSha256),
+                IdentityResolver = GetIdentity
+            });
         }
 
-        private static async Task<ClaimsIdentity> GetIdentity(UserManager<IdentityUser> userManager, string email, string password)
+        private async Task<ClaimsIdentity> GetIdentity(string email, string password)
         {
-            var user = await userManager.FindByEmailAsync(email);
-            if (user == null)
+            using (var serviceScope = _app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                return null;
+                var userManager = serviceScope.ServiceProvider.GetService<UserManager<IdentityUser>>();
+                var user = await userManager.FindByEmailAsync(email);
+                if (user == null)
+                {
+                    return null;
+                }
+                var result = await userManager.CheckPasswordAsync(user, password);
+                return result ? new ClaimsIdentity(
+                    new GenericIdentity(email, "Token"),
+                    new[]
+                    {
+                        new Claim("user_name", user.UserName), new Claim("user_id", user.Id)
+                    }) : null;
             }
-            var result = await userManager.CheckPasswordAsync(user, password);
-            return result ? new ClaimsIdentity(new GenericIdentity(email, "Token"), new[] { new Claim("user_name", user.UserName), new Claim("user_id", user.Id) }) : null;
         }
     }
 }

@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using ASPNetCoreAngular2Payments;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +16,7 @@ namespace ASPNetCoreAngular2YoExample.Controllers
 
         public IActionResult Error()
         {
+            ViewData["RequestId"] = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
             return View();
         }
     }
