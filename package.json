@@ -7,7 +7,7 @@
     "last 2 versions"
   ],
   "scripts": {
-    "test": "karma start ClientApp/test/karma.conf.js"
+    "test": "karma start --single-run --browsers PhantomJS ClientApp/test/karma.conf.js"
   },
   "dependencies": {
     "@angular/animations": "4.2.5",
@@ -67,6 +67,8 @@
     "karma-chrome-launcher": "2.2.0",
     "karma-cli": "1.0.1",
     "karma-jasmine": "1.1.0",
-    "karma-webpack": "2.0.3"
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-webpack": "2.0.3",
+    "phantomjs-prebuilt": "^2.1.15"
   }
 }

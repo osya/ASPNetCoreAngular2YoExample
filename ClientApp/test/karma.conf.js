@@ -17,7 +17,7 @@ module.exports = function (config) {
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: true,
-        browsers: ["Chrome"],
+        browsers: ["PhantomJS", "Chrome"],
         mime: { 'application/javascript': ["ts","tsx"] },
         singleRun: false,
         webpack: require("../../webpack.config.js")().filter(cfg => cfg.target !== "node"), // Test against client bundle, because tests run in a browser
