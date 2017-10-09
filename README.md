@@ -1,8 +1,6 @@
 ﻿# JWT-token registration app based on Angular 4 & ASP.NET Core 2.0
 
-.. image:: https://travis-ci.org/osya/ASPNetCoreAngular2YoExample.svg?branch=master
-    :target: https://travis-ci.org/osya/File_Storage_API
-    :alt: Build status
+[![Build Status](https://travis-ci.org/osya/ASPNetCoreAngular2YoExample.svg?branch=master)](https://travis-ci.org/osya/File_Storage_API)
 
 # Installation
 
