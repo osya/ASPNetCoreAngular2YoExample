@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace ASPNetCoreAngular2Payments
+namespace ASPNetCoreAngular2YoExample
 {
     /// <summary>
     /// This attribute adds token in Cookie in Response

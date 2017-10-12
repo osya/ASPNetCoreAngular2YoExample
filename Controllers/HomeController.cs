@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using ASPNetCoreAngular2Payments;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
