@@ -1,6 +1,5 @@
 using System;
 using System.Text;
-using ASPNetCoreAngular2Payments;
 using ASPNetCoreAngular2YoExample.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
