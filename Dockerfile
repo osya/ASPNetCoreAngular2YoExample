@@ -1,7 +1,5 @@
 FROM microsoft/aspnetcore-build:2
 
-RUN apt-get update
-
 WORKDIR /app
 
 COPY . .
@@ -11,6 +9,7 @@ RUN node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js -
 RUN node node_modules/webpack/bin/webpack.js --env.prod
 
 # postgresql-client - is for db health check script in docker-compose.yml
+RUN apt-get update
 RUN apt-get install -y postgresql-client
 
 RUN ["dotnet", "restore"]
