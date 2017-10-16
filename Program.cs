@@ -11,14 +11,9 @@ namespace ASPNetCoreAngular2YoExample
             BuildWebHost(args).Run();
         }
 
-        private static IWebHost BuildWebHost(string[] args)
-        {
-            var config = new ConfigurationBuilder().AddCommandLine(args).Build();
-
-            return WebHost.CreateDefaultBuilder(args)
-                .UseConfiguration(config)
+        private static IWebHost BuildWebHost(string[] args) =>
+			WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .Build();
-        }
     }
 }
