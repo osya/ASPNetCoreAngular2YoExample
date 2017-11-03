@@ -13,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="node_modules\**\*" />
+    <Compile Remove="node_modules\**\*;ASPNetCoreAngular2YoExampleTest\**\*" />
     <None Update="ClientApp\dist\**\*;Views\**\*;wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
