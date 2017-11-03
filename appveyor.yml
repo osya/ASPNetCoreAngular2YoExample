@@ -8,8 +8,3 @@ install:
 build:
   project: ASPNetCoreAngular2YoExample.sln
   verbosity: minimal
-test_script:
-- ps: >-
-    & "$env:UserProfile/.nuget/packages/opencover/4.6.519/tools/OpenCover.Console.exe" -register:user -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:test -output:coverage.xml
-
-    & "$env:UserProfile/.nuget/packages/coveralls.net/0.7.0/tools/csmacnz.Coveralls.exe" --opencover -i coverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID
