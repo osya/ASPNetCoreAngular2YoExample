@@ -1,7 +1,14 @@
 version: 1.0.{build}
 image: Visual Studio 2017
-before_build:
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: V0R3tMCETpO/0xi1gUIII+hLk35f5tayk7tBKuMA2PQtb0fdS+M3l5cL7pVXoctv
+install:
 - dotnet restore
 build:
   project: ASPNetCoreAngular2YoExample.sln
   verbosity: minimal
+test_script:
+- ps: >-
+    %UserProfile%/.nuget/packages/opencover/4.6.519/tools/OpenCover.Console.exe -register:user -target:dotnet -targetargs:test -output:opencoverCoverage.xml
+    %UserProfile%/.nuget/packages/coveralls.net/0.7.0/tools/csmacnz.Coveralls.exe --opencover -i opencoverCoverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID
