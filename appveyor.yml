@@ -2,7 +2,7 @@ version: 1.0.{build}
 image: Visual Studio 2017
 environment:
   COVERALLS_REPO_TOKEN:
-    secure: V0R3tMCETpO/0xi1gUIII+hLk35f5tayk7tBKuMA2PQtb0fdS+M3l5cL7pVXoctv
+    secure: 1oW29ACh/5v8zpwxa7dtIV/0VC7FPUhH4AtKM7r8NrWp+znbePUE/JbeR/r/9KIi
 build_script:
     - ps: dotnet restore ./ASPNetCoreAngular2YoExample.csproj
     - ps: dotnet build ./ASPNetCoreAngular2YoExample.csproj
