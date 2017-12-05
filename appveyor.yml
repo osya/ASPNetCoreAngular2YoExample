@@ -3,14 +3,14 @@ image: Visual Studio 2017
 environment:
   COVERALLS_REPO_TOKEN:
     secure: V0R3tMCETpO/0xi1gUIII+hLk35f5tayk7tBKuMA2PQtb0fdS+M3l5cL7pVXoctv
-install:
-- dotnet restore ./ASPNetCoreAngular2YoExample.csproj
-build:
-  project: ASPNetCoreAngular2YoExample.sln
-  verbosity: minimal
+# install:
+# build:
+#  project: ASPNetCoreAngular2YoExample.sln
+#  verbosity: minimal
+build_script:
+    - ps: dotnet restore ./ASPNetCoreAngular2YoExample.csproj
+    - ps: dotnet --verbose build
 test_script:
  - ps: >-
-    dotnet test ./ASPNetCoreAngular2YoExampleTest/ASPNetCoreAngular2YoExampleTest.csproj
-#     & "$env:UserProfile/.nuget/packages/opencover/4.6.519/tools/OpenCover.Console.exe" -register:user -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test ASPNetCoreAngular2YoExampleTest" -output:coverage.xml
-#
-#     & "$env:UserProfile/.nuget/packages/coveralls.net/0.7.0/tools/csmacnz.Coveralls.exe" --opencover -i coverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID
+    "$env:UserProfile/.nuget/packages/opencover/4.6.519/tools/OpenCover.Console.exe" -register:user -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test ASPNetCoreAngular2YoExampleTest" -output:coverage.xml
+    & "$env:UserProfile/.nuget/packages/coveralls.net/0.7.0/tools/csmacnz.Coveralls.exe" --opencover -i coverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID
