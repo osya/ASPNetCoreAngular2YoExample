@@ -1,19 +1,17 @@
-using System;
-using System.Text;
 using ASPNetCoreAngular2YoExample.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.ObjectModel;
+using System.Text;
 
 namespace ASPNetCoreAngular2YoExample
 {
@@ -64,8 +62,8 @@ namespace ASPNetCoreAngular2YoExample
 
             services.AddMvc();
 
-            services.AddDbContext<AppDbContext>(
-                opts => opts.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<AppDbContext>(opts => opts.UseNpgsql(connectionString));
 
             services.AddScoped<AngularAntiForgeryTokenAttribute>();
             services.AddAntiforgery(options =>
