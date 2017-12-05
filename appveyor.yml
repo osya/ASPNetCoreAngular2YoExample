@@ -9,7 +9,7 @@ environment:
 #  verbosity: minimal
 build_script:
     - ps: dotnet restore ./ASPNetCoreAngular2YoExample.csproj
-    - ps: dotnet build
+    - ps: dotnet build ./ASPNetCoreAngular2YoExample.csproj
 test_script:
  - ps: >-
     "$env:UserProfile/.nuget/packages/opencover/4.6.519/tools/OpenCover.Console.exe" -register:user -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test ASPNetCoreAngular2YoExampleTest" -output:coverage.xml
