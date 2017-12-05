@@ -7,6 +7,5 @@ script:
  - npm install
  - node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod
  - node node_modules/webpack/bin/webpack.js --env.prod
- - dotnet restore .\ASPNetCoreAngular2YoExample.csproj
- - dotnet build .\ASPNetCoreAngular2YoExample.csproj
+ - dotnet build ./ASPNetCoreAngular2YoExample.csproj
  - npm test
