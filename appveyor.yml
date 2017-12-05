@@ -3,6 +3,8 @@ image: Visual Studio 2017
 environment:
   COVERALLS_REPO_TOKEN:
     secure: V0R3tMCETpO/0xi1gUIII+hLk35f5tayk7tBKuMA2PQtb0fdS+M3l5cL7pVXoctv
+install:
+- dotnet restore ./ASPNetCoreAngular2YoExample.csproj
 build:
   project: ASPNetCoreAngular2YoExample.sln
   verbosity: minimal
