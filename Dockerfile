@@ -48,3 +48,5 @@ RUN buildDeps='xz-utils' \
 # RUN npm install
 # RUN node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod
 # RUN node node_modules/webpack/bin/webpack.js --env.prod
+
+ENTRYPOINT ["dotnet", "ASPNetCoreAngular2Payments.dll"]
