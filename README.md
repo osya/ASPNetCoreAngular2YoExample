@@ -9,7 +9,7 @@ Used technologies:
 - ASP.NET Core MVC 2.0 & Angular 4
 - Testing: Karma
 - Assets management: NPM & Webpack
-- Travis CI
+- Travis CI, AppVeyor
 
 ## Installation
 
