@@ -16,15 +16,14 @@ Used technologies:
 Before creating Docker container:
 
 ```shell
-    npm install
-    node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod
-    node node_modules/webpack/bin/webpack.js --env.prod
+npm install
+npm run webpack:deploy
 ```
 
 Launching:
 
 ```shell
-    docker-compose up
+docker-compose up
 ```
 
 ## Usage
@@ -32,3 +31,9 @@ Launching:
 Open the following URL in a browser <http://192.168.99.100/>
 
 ## Tests
+
+To run all tests, run
+
+```shell
+npm test
+```

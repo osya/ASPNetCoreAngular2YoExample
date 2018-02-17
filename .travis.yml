@@ -5,8 +5,6 @@ dotnet: 2.0.0
 dist: trusty
 script:
  - npm install
- - node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod
- - node node_modules/webpack/bin/webpack.js --env.prod
+ - npm run webpack:deploy
  - dotnet build ./ASPNetCoreAngular2YoExample.csproj
- - dotnet test ./ASPNetCoreAngular2YoExampleTest/ASPNetCoreAngular2YoExampleTest.csproj
  - npm test
